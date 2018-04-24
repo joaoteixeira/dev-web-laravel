@@ -13,9 +13,9 @@ class ContatosController extends Controller
      */
     public function index()
     {
-        $contatos = \App\Contato::paginate(20);
+        $contatos = \App\Contato::all();
 
-        return view('contato', array('contatos' => $contatos));
+        return view('contato.index', array('contatos' => $contatos));
     }
 
     /**
@@ -25,7 +25,7 @@ class ContatosController extends Controller
      */
     public function create()
     {
-        //
+        return view('contato.create');
     }
 
     /**
@@ -36,7 +36,13 @@ class ContatosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $contato = new \App\Contato();
+        $contato->nome = $request->nome;
+        $contato->email = $request->email;
+        $contato->whatsapp = $request->whatsapp;
+        $contato->save();
+
+        return 'Salvo!!!';
     }
 
     /**

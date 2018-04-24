@@ -3,8 +3,11 @@
 @section('conteudo')
 
 <h1 class="mt-5" style="margin-bottom:30px">Lista de contatos</h1>
+<hr>
 
-<table class="table table-hover table-sm">
+<a href="{{ route('contatos.create') }}" class="btn btn-primary active">Adicionar contato</a>
+
+<table class="table table-hover table-sm" style="margin-top:20px">
   <thead>
     <tr>
       <th>#</th>
@@ -14,8 +17,8 @@
     </tr>
   </thead>
   <tbody>
+    @foreach($contatos as $item)
     <tr>
-      @foreach($contatos as $item)
       <td>{{ $loop->iteration }}</td>
       <td>{{ $item->nome }}</td>
       <td>{{ $item->whatsapp }}</td>
