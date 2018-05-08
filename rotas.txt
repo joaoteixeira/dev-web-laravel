@@ -1,0 +1,17 @@
++--------+-----------+-------------------------+------------------+-------------------------------------------------+--------------+
+| Method    | URI                     | Name             | Action                                          | Middleware   |
++--------+-----------+-------------------------+------------------+-------------------------------------------------+--------------+
+| GET|HEAD  | /                       |                  | Closure                                         | web          |
+| GET|HEAD  | api/user                |                  | Closure                                         | api,auth:api |
+| GET|HEAD  | contatos                | contatos.index   | App\Http\Controllers\ContatosController@index   | web          |
+| POST      | contatos                | contatos.store   | App\Http\Controllers\ContatosController@store   | web          |
+| GET|HEAD  | contatos/create         | contatos.create  | App\Http\Controllers\ContatosController@create  | web          |
+| GET|HEAD  | contatos/{contato}      | contatos.show    | App\Http\Controllers\ContatosController@show    | web          |
+| PUT|PATCH | contatos/{contato}      | contatos.update  | App\Http\Controllers\ContatosController@update  | web          |
+| DELETE    | contatos/{contato}      | contatos.destroy | App\Http\Controllers\ContatosController@destroy | web          |
+| GET|HEAD  | contatos/{contato}/edit | contatos.edit    | App\Http\Controllers\ContatosController@edit    | web          |
+| GET|HEAD  | sobre                   |                  | Closure                                         | web          |
++--------+-----------+-------------------------+------------------+-------------------------------------------------+--------------+
+
+
+Route::resources('contatos', 'ContatosController');

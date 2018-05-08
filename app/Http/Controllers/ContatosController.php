@@ -13,7 +13,7 @@ class ContatosController extends Controller
      */
     public function index()
     {
-        $contatos = \App\Contato::all();
+        $contatos = \App\Contato::orderBy('id', 'DESC')->get();
 
         return view('contato.index', array('contatos' => $contatos));
     }
@@ -42,7 +42,9 @@ class ContatosController extends Controller
         $contato->whatsapp = $request->whatsapp;
         $contato->save();
 
-        return 'Salvo!!!';
+        $request->session()->flash('sucesso', 'Contato adicionado com sucesso!');
+
+        return redirect()->route('contatos.index');
     }
 
     /**
@@ -51,9 +53,17 @@ class ContatosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+      $contato = \App\Contato::find($id);
+
+      if($contato) {
+        return view('contato.show', array('contato' => $contato));
+      } else {
+        $request->session()->flash('erro', "O Contato Id:{$id} não existe!");
+
+        return redirect()->route('contatos.index');
+      }
     }
 
     /**
