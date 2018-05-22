@@ -18,5 +18,7 @@
 
   <p>
     <a href="{{ route('contatos.index') }}" class="btn btn-warning">&laquo; Voltar</a>
+
+    <a href="{{ route('contatos.edit', $contato->id) }}" class="btn btn-success">Editar contato</a>
   </p>
 @endsection

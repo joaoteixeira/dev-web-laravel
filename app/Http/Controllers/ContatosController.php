@@ -74,7 +74,9 @@ class ContatosController extends Controller
      */
     public function edit($id)
     {
-        //
+      $contato = \App\Contato::find($id);
+
+      return view('contato.edit', array('contato' => $contato, 'id' => $id));
     }
 
     /**
@@ -86,7 +88,15 @@ class ContatosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $contato = \App\Contato::find($id);
+      $contato->nome = $request->nome;
+      $contato->email = $request->email;
+      $contato->whatsapp = $request->whatsapp;
+      $contato->save();
+
+      $request->session()->flash('sucesso', "O Contato {$contato->nome} foi atualizado com sucesso!");
+
+      return redirect()->route('contatos.index');
     }
 
     /**
