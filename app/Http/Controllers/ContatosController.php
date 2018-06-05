@@ -13,7 +13,9 @@ class ContatosController extends Controller
      */
     public function index()
     {
-        $contatos = \App\Contato::orderBy('id', 'DESC')->get();
+        // $contatos = \App\Contato::orderBy('id', 'DESC')->get();
+
+        $contatos = \App\Contato::all();
 
         return view('contato.index', array('contatos' => $contatos));
     }
@@ -25,7 +27,9 @@ class ContatosController extends Controller
      */
     public function create()
     {
-        return view('contato.create');
+        $categorias = \App\Categoria::all();
+
+        return view('contato.create', compact('categorias'));
     }
 
     /**
@@ -40,6 +44,7 @@ class ContatosController extends Controller
         $contato->nome = $request->nome;
         $contato->email = $request->email;
         $contato->whatsapp = $request->whatsapp;
+        $contato->categoria_id = $request->categoria;
         $contato->save();
 
         $request->session()->flash('sucesso', 'Contato adicionado com sucesso!');
@@ -55,7 +60,7 @@ class ContatosController extends Controller
      */
     public function show(Request $request, $id)
     {
-      $contato = \App\Contato::find($id);
+      $contato = \App\Contato::with('categoria')->find($id);
 
       if($contato) {
         return view('contato.show', array('contato' => $contato));
@@ -74,7 +79,7 @@ class ContatosController extends Controller
      */
     public function edit($id)
     {
-      $contato = \App\Contato::find($id);
+      $contato = \App\Contato::with('categoria')->find($id)->get();
 
       return view('contato.edit', array('contato' => $contato, 'id' => $id));
     }
@@ -109,4 +114,5 @@ class ContatosController extends Controller
     {
         //
     }
+
 }

@@ -1,0 +1,23 @@
+create table categorias (
+	
+id_cat int not null auto_increment,
+	
+nome varchar(100) not null,
+	
+primary key(id_cat)
+
+);
+
+
+
+
+INSERT INTO categorias VALUES (null, 'Amigos'), (null, 'Família'), (null, 'Trabalho');
+
+ALTER TABLE contatos ADD COLUMN categoria_id INT NULL AFTER id;
+
+
+ALTER TABLE contatos ADD FOREIGN KEY (categoria_id) REFERENCES categorias(id_cat);
+
+php artisan make:model Categoria
+
+php artisan make:controller CategoriasController -r 

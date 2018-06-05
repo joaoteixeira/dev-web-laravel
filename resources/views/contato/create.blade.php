@@ -17,6 +17,18 @@
       Whatsapp
       <input type="text" name="whatsapp" class="form-control" value="" placeholder="69 99200-0001">
     </p>
+    <hr>
+    <p>
+      Categorias
+      <select class="form-control" name="categoria" required>
+        <option>Selecione uma categoria</option>
+
+        @foreach($categorias as $item)
+          <option value="{{ $item->id_cat }}">{{ $item->nome }}</option>
+        @endforeach
+        
+      </select>
+    </p>
 
     <p>
 

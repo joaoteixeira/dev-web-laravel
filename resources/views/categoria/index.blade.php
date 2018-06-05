@@ -2,7 +2,7 @@
 
 @section('conteudo')
 
-<h1 class="mt-5" style="margin-bottom:30px">Lista de contatos</h1>
+<h1 class="mt-5" style="margin-bottom:30px">Categorias</h1>
 <hr>
 
 @if (session()->has('sucesso'))
@@ -18,29 +18,24 @@
 @endif
 
 
-<a href="{{ route('contatos.create') }}" class="btn btn-primary active">Adicionar contato</a>
+<!-- <a href="{{ route('contatos.create') }}" class="btn btn-primary active">Adicionar contato</a> -->
 
 <table class="table table-hover table-sm" style="margin-top:20px">
   <thead>
     <tr>
       <th>#</th>
       <th>Nome</th>
-      <th>Categoria</th>
-      <th>Whatsapp</th>
-      <th>E-mail</th>
       <th>Opções</th>
     </tr>
   </thead>
   <tbody>
-    @foreach($contatos as $item)
+    @foreach($categorias as $item)
     <tr>
-      <td>{{ $loop->iteration }}</td>
+      <td width="2">{{ $loop->iteration }}</td>
       <td>{{ $item->nome }}</td>
-      <td>{{ $item->categoria ? $item->categoria->nome : 'inexistente' }}</td>
-      <td>{{ $item->whatsapp }}</td>
-      <td>{{ $item->email }}</td>
-      <td>
-        <a href="{{ route('contatos.show', $item->id) }}">Detalhes</a>
+      <td width="1" class="text-nowrap">
+        <a href="#" class="btn btn-sm btn-info">Atualizar</a>
+        <a href="#" class="btn btn-sm btn-danger">Excluir</a>
       </td>
     </tr>
     @endforeach

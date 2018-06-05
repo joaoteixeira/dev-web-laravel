@@ -20,3 +20,5 @@ Route::get('/sobre', function () {
 });
 
 Route::resource('/contatos', 'ContatosController');
+
+Route::resource('/categorias', 'CategoriasController');

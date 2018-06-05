@@ -11,4 +11,9 @@ class Contato extends Model
     protected $table = 'contatos';
 
     public $timestamps = false;
+
+    public function categoria()
+    {
+      return $this->belongsTo('App\Categoria', 'categoria_id', 'id_cat');
+    }
 }
