@@ -18,6 +18,18 @@
       Whatsapp
       <input type="text" name="whatsapp" class="form-control" value="{{ $contato->whatsapp }}" placeholder="69 99200-0001">
     </p>
+    <hr>
+    <p>
+      Categorias
+      <select class="form-control" name="categoria" required>
+        <option>Selecione uma categoria</option>
+
+        @foreach($categorias as $item)
+          <option value="{{ $item->id_cat }}" {{ $contato->categoria_id == $item->id_cat ? 'selected' : '' }}>{{ $item->nome }}</option>
+        @endforeach
+
+      </select>
+    </p>
 
     <p>
 

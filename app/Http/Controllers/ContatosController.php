@@ -30,6 +30,8 @@ class ContatosController extends Controller
         $categorias = \App\Categoria::all();
 
         return view('contato.create', compact('categorias'));
+
+        // return view('contato.create', array('categorias' => $categorias));
     }
 
     /**
@@ -79,9 +81,11 @@ class ContatosController extends Controller
      */
     public function edit($id)
     {
-      $contato = \App\Contato::with('categoria')->find($id)->get();
+      $contato = \App\Contato::with('categoria')->find($id);
 
-      return view('contato.edit', array('contato' => $contato, 'id' => $id));
+      $categorias = \App\Categoria::all();
+
+      return view('contato.edit', array('contato' => $contato, 'id' => $id, 'categorias' => $categorias));
     }
 
     /**
@@ -97,6 +101,8 @@ class ContatosController extends Controller
       $contato->nome = $request->nome;
       $contato->email = $request->email;
       $contato->whatsapp = $request->whatsapp;
+      $contato->categoria_id = $request->categoria;
+      
       $contato->save();
 
       $request->session()->flash('sucesso', "O Contato {$contato->nome} foi atualizado com sucesso!");
