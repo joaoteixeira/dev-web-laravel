@@ -19,6 +19,10 @@ Route::get('/sobre', function () {
     return view('sobre');
 });
 
+
 Route::resource('/contatos', 'ContatosController');
 
 Route::resource('/categorias', 'CategoriasController');
+
+// Route::get('/lista', 'CategoriasController@listaPorCategoria');
+Route::get('/lista', 'CategoriasController@listaPorCategoria')->name('listaPorCategoria');

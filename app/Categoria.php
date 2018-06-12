@@ -12,4 +12,8 @@ class Categoria extends Model
 
   public $timestamps = false;
 
+  public function contatos()
+  {
+    return $this->hasMany('App\Contato', 'categoria_id', 'id_cat');
+  }
 }

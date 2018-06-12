@@ -38,6 +38,13 @@
         <a href="#" class="btn btn-sm btn-danger">Excluir</a>
       </td>
     </tr>
+      @foreach($item->contatos as $con)
+      <tr>
+        <td></td>
+        <td>{{ $con->nome }}</td>
+        <td></td>
+      </tr>
+      @endforeach
     @endforeach
   </tbody>
 </table>

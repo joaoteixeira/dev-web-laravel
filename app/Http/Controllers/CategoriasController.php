@@ -6,6 +6,23 @@ use Illuminate\Http\Request;
 
 class CategoriasController extends Controller
 {
+    public function listaPorCategoria(Request $request)
+    {
+      $contatos = null;
+      $categorias = \App\Categoria::all();
+
+      if($request->categoria) {
+
+        $categoria = \App\Categoria::find($request->categoria);
+
+        if($categoria)
+          $contatos = $categoria->contatos;
+
+          // return view('categoria.listaPorCategoria', array('contatos' => $categoria->contatos, 'categorias' => $categorias));
+      }
+
+      return view('categoria.listaPorCategoria', compact('contatos', 'categorias'));
+    }
     /**
      * Display a listing of the resource.
      *
