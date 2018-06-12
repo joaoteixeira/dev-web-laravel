@@ -102,7 +102,7 @@ class ContatosController extends Controller
       $contato->email = $request->email;
       $contato->whatsapp = $request->whatsapp;
       $contato->categoria_id = $request->categoria;
-      
+
       $contato->save();
 
       $request->session()->flash('sucesso', "O Contato {$contato->nome} foi atualizado com sucesso!");
@@ -116,9 +116,16 @@ class ContatosController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+      $contato = \App\Contato::find($id);
+      $nome = $contato->nome;
+
+      $contato->delete();
+
+      $request->session()->flash('sucesso', "O Contato {$nome} foi excluido com sucesso!");
+
+      return redirect()->route('contatos.index');
     }
 
 }
